@@ -50,6 +50,8 @@ def placeComputerShips():
 def playerGuess():
     guessRow = int(input("Guess row:"))
     guessColumn = int(input("Guess column:"))
+    # Lösa alla utfall av gissningar. 
+    # Om jag träffar ett skepp (@), byts punkten ut mot ett (X), alltså träffat skepp.
 
 
 
@@ -69,6 +71,12 @@ def printBoards():
 
     for x in range(5):
         print(computerBoard[x])
+        # Skriv inte ut punkten utan att titta på den först
+
+        # Ifall det finns ett skepp på den här punkten, 
+        # ska den inte skrivas ut. 
+        
+        # Istället för skeppet(@) måste vi skriva ut punkter.
 
 placePlayerShips()
 
@@ -76,3 +84,8 @@ placeComputerShips()
 
 printBoards()
 # runGame()
+
+#   . = tom ruta
+#   @ = placerat skepp
+#   X = träffat skepp
+#   O = träffa luft

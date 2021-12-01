@@ -41,6 +41,7 @@ def placeComputerShips():
             computerBoard[row][column] = "@"
 
         else:
+            print("conflict")
             x = x-1
             
 
@@ -52,16 +53,26 @@ def playerGuess():
 
 
 
+def runGame():
+    print("ellenåtsånt")
 
 
-def runGame()
+def printBoards():
 
-#Konvertera input till en siffra
-#Innan du placerar "@", kolla att det inte redan finns ett "@" där.
+    print(username,"'s board")
+    
+    for x in range(5):
+        print(playerBoard[x])
 
+
+    print("Computer's board")
+
+    for x in range(5):
+        print(computerBoard[x])
 
 placePlayerShips()
 
 placeComputerShips()
 
-runGame()
+printBoards()
+# runGame()

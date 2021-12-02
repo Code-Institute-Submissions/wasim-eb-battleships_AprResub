@@ -74,10 +74,11 @@ def computerGuess():
     randRow = randint(0, 4)
     randColumn = randint(0, 4)
 
-    if playerBoard[randRow][randColumn] == "@":
-        playerBoard[randRow] [randColumn] = "X"
+    if playerBoard[randRow][randColumn] == "@" or playerBoard[randRow][randColumn] == "X":
+        playerBoard[randRow][randColumn] = "X"
+        
     else:
-        playerBoard[randRow] [randColumn] = "O"
+        playerBoard[randRow][randColumn] = "O"
 
 def gameOver():
     player_sunkenShipCount = 0

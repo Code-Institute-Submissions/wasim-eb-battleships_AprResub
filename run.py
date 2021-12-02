@@ -4,6 +4,12 @@ print("Welcome to Battleshipz")
 
 username = input("Enter Username:")
 
+"""
+Both boards where the game will be played on. The playerboard consists
+of 5x5 dots which are empty spaces on the board and the same applies
+for the computerboard.
+"""
+
 playerBoard = [[".", ".", ".",".","."], 
                [".", ".", ".",".","."], 
                [".", ".", ".",".","."], 
@@ -29,9 +35,7 @@ def placePlayerShips():
 
         else:
             print("Error, a ship has already been placed there")
-    #Lägg till value error?
-        
-    
+        #Lägg till value error?
 def placeComputerShips():
     for x in range(4):
         row = randint(0, 4)
@@ -39,17 +43,21 @@ def placeComputerShips():
 
         if computerBoard[row][column] == ".":
             computerBoard[row][column] = "@"
-
         else:
             print("conflict")
             x = x-1
             
 
-
-
 def playerGuess():
     guessRow = int(input("Guess row:"))
     guessColumn = int(input("Guess column:"))
+
+    if playerGuess[guessRow][guessColumn] == "@":
+            playerGuess[guessRow][guessColumn] = "X"
+            print("Congratulations, you have hit a ship!")
+    else:
+        print("Error, a ship has either been placed there or a ship has already been hit")
+    # Vad händer när spelaren har gjort sitt drag? Det är datorns tur.
     # Lösa alla utfall av gissningar. 
     # Om jag träffar ett skepp (@), byts punkten ut mot ett (X), alltså träffat skepp.
 
@@ -85,7 +93,7 @@ placeComputerShips()
 printBoards()
 # runGame()
 
-#   . = tom ruta
-#   @ = placerat skepp
-#   X = träffat skepp
-#   O = träffa luft
+#   . = Empty space
+#   @ = Placed ship
+#   X = Ship has been hit
+#   O = Empty space has been hit

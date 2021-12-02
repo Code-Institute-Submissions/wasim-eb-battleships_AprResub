@@ -52,37 +52,78 @@ def playerGuess():
     guessRow = int(input("Guess row:"))
     guessColumn = int(input("Guess column:"))
 
-    if playerGuess[guessRow][guessColumn] == "@":
-            playerGuess[guessRow][guessColumn] = "X"
-            print("Congratulations, you have hit a ship!")
-    else:
-        print("Error, a ship has either been placed there or a ship has already been hit")
+    if computerBoard[guessRow][guessColumn] == "@":
+        computerBoard[guessRow][guessColumn] = "X"
+        print("Congratulations, you hit a ship!")
+    elif computerBoard[guessRow][guessColumn] == ".":
+        computerBoard[guessRow][guessColumn] = "O"
+
     # Vad händer när spelaren har gjort sitt drag? Det är datorns tur.
-    # Lösa alla utfall av gissningar. 
+    # Lösa alla utfall av gissningar.
     # Om jag träffar ett skepp (@), byts punkten ut mot ett (X), alltså träffat skepp.
 
 
 
 def runGame():
-    print("ellenåtsånt")
+    while not gameOver():
+        playerGuess()
+        computerGuess()
+        printBoards()
+        
+
+def computerGuess():
+    randRow = randint(0, 4)
+    randColumn = randint(0, 4)
+
+    if playerBoard[randRow][randColumn] == "@":
+        playerBoard[randRow] [randColumn] = "X"
+    else:
+        playerBoard[randRow] [randColumn] = "O"
+
+def gameOver():
+    player_sunkenShipCount = 0
+    computer_sunkenShipCount = 0
+
+    for x in range(5):
+        for y in range(5):
+            if playerBoard[x][y] == "X":
+                player_sunkenShipCount = player_sunkenShipCount + 1
+            elif computerBoard[x][y] == "X":
+                computer_sunkenShipCount = computer_sunkenShipCount + 1
+
+    if player_sunkenShipCount == 4:
+        print("Computer wins")
+        return True
+    elif computer_sunkenShipCount == 4:
+        print("Player wins!")
+        return True
+    return False
 
 
 def printBoards():
-
+    #Printing user board
     print(username,"'s board")
     
     for x in range(5):
-        print(playerBoard[x])
-
+        for y in range (5):
+            print(playerBoard[x][y], end = " ")
+        print("")
+    #--------
 
     print("Computer's board")
 
     for x in range(5):
-        print(computerBoard[x])
+        for y in range(5):
+            currentPos = computerBoard[x][y]
+            if currentPos == '@':
+                print(".", end = " ") #5 ska ersättas med .
+            else:
+                print(currentPos, end = " ")
+        print("")
         # Skriv inte ut punkten utan att titta på den först
 
-        # Ifall det finns ett skepp på den här punkten, 
-        # ska den inte skrivas ut. 
+        # Ifall det finns ett skepp på den här punkten,
+        # ska den inte skrivas ut.
         
         # Istället för skeppet(@) måste vi skriva ut punkter.
 
@@ -91,7 +132,8 @@ placePlayerShips()
 placeComputerShips()
 
 printBoards()
-# runGame()
+
+runGame()
 
 #   . = Empty space
 #   @ = Placed ship

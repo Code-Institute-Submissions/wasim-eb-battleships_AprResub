@@ -44,7 +44,6 @@ def placeComputerShips():
         if computerBoard[row][column] == ".":
             computerBoard[row][column] = "@"
         else:
-            print("conflict")
             x = x-1
             
 
@@ -95,10 +94,13 @@ def gameOver():
         print("Computer wins")
         return True
     elif computer_sunkenShipCount == 4:
-        print("Player wins!")
+        print(username," wins!")
         return True
-    return False
+    print("PLAYER SUNKEN SHIP COUNT: ",player_sunkenShipCount)
+    print("COMPUTER SUNKEN SHIP COUNT: ",computer_sunkenShipCount)
 
+    return False
+   
 
 def printBoards():
     #Printing user board

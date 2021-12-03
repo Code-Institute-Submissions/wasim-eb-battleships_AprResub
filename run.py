@@ -10,24 +10,27 @@ of 5x5 dots which are empty spaces on the board and the same applies
 for the computerboard.
 """
 
-playerBoard = [[".", ".", ".",".","."], 
-               [".", ".", ".",".","."], 
-               [".", ".", ".",".","."], 
-               [".", ".", ".",".","."], 
-               [".", ".", ".",".","."]]
+playerBoard = [[".", ".", ".", ".", "."], 
+               [".", ".", ".", ".", "."], 
+               [".", ".", ".", ".", "."], 
+               [".", ".", ".", ".", "."], 
+               [".", ".", ".", ".", "."]]
 
-computerBoard = [[".", ".", ".", ".", ".",], 
+computerBoard = [[".", ".", ".", ".", "."], 
                  [".", ".", ".", ".", "."], 
                  [".", ".", ".", ".", "."], 
                  [".", ".", ".", ".", "."], 
                  [".", ".", ".", ".", "."]]
 
-
+"""
+Here, the player places their ships on the board. Type an integer between 0-4
+(0 being the first row and column, and 4 being the fifth) to decide which
+row and which column to place the ship.
+"""
 def placePlayerShips():
     for x in range(4):
-        row = int(input("Please, enter a row to place your ship on, 0-4:"))
-        column = int(input("Please, enter a column to place your ship on, 0-4:"))
-    
+        row = int(input("Enter a row to place your ship on, 0-4:"))
+        column = int(input("Enter a column to place your ship on, 0-4:"))
 
         if playerBoard[row][column] == ".":
             playerBoard[row][column] = "@"
@@ -35,7 +38,11 @@ def placePlayerShips():
 
         else:
             print("Error, a ship has already been placed there")
-        #Lägg till value error?
+        # Lägg till value error?
+"""
+The computer places 4 ships on the computerboard by picking 4 random spaces
+to place their ships on. The integer is randomized between 0-4 (1-5)
+"""
 def placeComputerShips():
     for x in range(4):
         row = randint(0, 4)
@@ -46,7 +53,11 @@ def placeComputerShips():
         else:
             x = x-1
             
-
+"""
+The player makes the first guess by typing in two 
+integers to decide which space to attack. If it hits,
+the dot turns into a "X", and if it misses, it turns into a "O"
+"""
 def playerGuess():
     guessRow = int(input("Guess row:"))
     guessColumn = int(input("Guess column:"))
@@ -57,12 +68,10 @@ def playerGuess():
     elif computerBoard[guessRow][guessColumn] == ".":
         computerBoard[guessRow][guessColumn] = "O"
 
-    # Vad händer när spelaren har gjort sitt drag? Det är datorns tur.
-    # Lösa alla utfall av gissningar.
-    # Om jag träffar ett skepp (@), byts punkten ut mot ett (X), alltså träffat skepp.
-
-
-
+# Vad händer när spelaren har gjort sitt drag? Det är datorns tur.
+# Lösa alla utfall av gissningar.
+# Om jag träffar ett skepp (@), byts punkten ut mot ett (X),
+# alltså träffat skepp.
 def runGame():
     while not gameOver():
         playerGuess()
@@ -74,7 +83,8 @@ def computerGuess():
     randRow = randint(0, 4)
     randColumn = randint(0, 4)
 
-    if playerBoard[randRow][randColumn] == "@" or playerBoard[randRow][randColumn] == "X":
+    if playerBoard[randRow][randColumn] == "@" 
+    or playerBoard[randRow][randColumn] == "X":
         playerBoard[randRow][randColumn] = "X"
         
     else:
@@ -95,23 +105,23 @@ def gameOver():
         print("Computer wins")
         return True
     elif computer_sunkenShipCount == 4:
-        print(username," wins!")
+        print(username, " wins!")
         return True
-    print("PLAYER SUNKEN SHIP COUNT: ",player_sunkenShipCount)
-    print("COMPUTER SUNKEN SHIP COUNT: ",computer_sunkenShipCount)
+    print("PLAYER SUNKEN SHIP COUNT: ", player_sunkenShipCount)
+    print("COMPUTER SUNKEN SHIP COUNT: ", computer_sunkenShipCount)
 
     return False
    
 
 def printBoards():
-    #Printing user board
-    print(username,"'s board")
+    # Printing user board
+    print(username, "'s board")
     
     for x in range(5):
-        for y in range (5):
-            print(playerBoard[x][y], end = " ")
+        for y in range(5):
+            print(playerBoard[x][y], end="")
         print("")
-    #--------
+    # --------
 
     print("Computer's board")
 
@@ -119,16 +129,17 @@ def printBoards():
         for y in range(5):
             currentPos = computerBoard[x][y]
             if currentPos == '@':
-                print(".", end = " ") #5 ska ersättas med .
+                print(".", end="")  # 5 is replaced by .
             else:
-                print(currentPos, end = " ")
+                print(currentPos, end="")
         print("")
-        # Skriv inte ut punkten utan att titta på den först
+        # Don't show the dot unless it has been checked first
 
-        # Ifall det finns ett skepp på den här punkten,
-        # ska den inte skrivas ut.
+        # If there is a ship place on this dot,
+        # it shall not be printed.
         
-        # Istället för skeppet(@) måste vi skriva ut punkter.
+        # Instead of a ship(@) on the computerboard
+        # there but be a dot(.) to hide the location for the player.
 
 placePlayerShips()
 

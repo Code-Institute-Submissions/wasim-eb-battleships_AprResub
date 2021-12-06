@@ -29,9 +29,9 @@ row and which column to place the ship.
 """
 def placePlayerShips():
     for x in range(4):
-        row = int(input("Enter a row to place your ship on, 0-4:"))
-        column = int(input("Enter a column to place your ship on, 0-4:"))
-
+        row = assertIntegerWithinBounds("Please, enter a number between 0-4:")
+        column = assertIntegerWithinBounds("Please, enter a number between 0-4:")
+        
         if playerBoard[row][column] == ".":
             playerBoard[row][column] = "@"
             print("Your ship has been placed")
@@ -39,6 +39,21 @@ def placePlayerShips():
         else:
             print("Error, a ship has already been placed there")
         # Lägg till value error?
+
+def assertIntegerWithinBounds(message):
+
+    while True:
+	    userInput = input(message)
+	    if userInput.isnumeric():
+		    userInput = int(userInput)
+		    if userInput >= 0 and userInput <= 4:
+			    return userInput
+		    else:
+			    print("Enter a value between 0 - 4")
+	    else :
+		    print("Please, enter a numeric value")
+    
+
 """
 The computer places 4 ships on the computerboard by picking 4 random spaces
 to place their ships on. The integer is randomized between 0-4 (1-5)
@@ -47,7 +62,7 @@ def placeComputerShips():
     for x in range(4):
         row = randint(0, 4)
         column = randint(0, 4)
-
+        
         if computerBoard[row][column] == ".":
             computerBoard[row][column] = "@"
         else:
@@ -59,8 +74,8 @@ integers to decide which space to attack. If it hits,
 the dot turns into a "X", and if it misses, it turns into a "O"
 """
 def playerGuess():
-    guessRow = int(input("Guess row:"))
-    guessColumn = int(input("Guess column:"))
+    guessRow = assertIntegerWithinBounds("Please, enter a number between 0-4:")
+    guessColumn = assertIntegerWithinBounds("Please, enter a number between 0-4:")
 
     if computerBoard[guessRow][guessColumn] == "@":
         computerBoard[guessRow][guessColumn] = "X"
@@ -80,14 +95,17 @@ def runGame():
         
 
 def computerGuess():
-    randRow = randint(0, 4)
-    randCol = randint(0, 4)
+    while True:
+        randRow = randint(0, 4)
+        randCol = randint(0, 4)
 
-    if playerBoard[randRow][randCol] == "@" or playerBoard[randRow][randCol] == "X":
-        playerBoard[randRow][randCol] = "X"
-        
-    else:
-        playerBoard[randRow][randCol] = "O"
+        if playerBoard[randRow][randCol] == "@":
+            playerBoard[randRow][randCol] = "X"
+            break
+
+        elif playerBoard[randRow][randCol] == ".":
+            playerBoard[randRow][randCol] = "O"
+            break
 
 def gameOver():
     player_sunkenShipCount = 0
@@ -118,7 +136,7 @@ def printBoards():
     
     for x in range(5):
         for y in range(5):
-            print(playerBoard[x][y], end="")
+            print(playerBoard[x][y], end=" ")
         print("")
     # --------
 
@@ -128,9 +146,9 @@ def printBoards():
         for y in range(5):
             currentPos = computerBoard[x][y]
             if currentPos == '@':
-                print(".", end="")  # 5 is replaced by .
+                print(".", end=" ")  # 5 is replaced by .
             else:
-                print(currentPos, end="")
+                print(currentPos, end=" ")
         print("")
         # Don't show the dot unless it has been checked first
 
@@ -152,3 +170,6 @@ runGame()
 #   @ = Placed ship
 #   X = Ship has been hit
 #   O = Empty space has been hit
+
+# Datorn ska ej kunna gissa på samma
+# 

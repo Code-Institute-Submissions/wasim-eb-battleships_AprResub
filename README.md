@@ -52,12 +52,24 @@ All my code was made separetaly since I found it more simple for my knowledge in
 
 ## Testing
 I have manually tested this application, and I also asked a friend to try it out. We found some minor errors such as:
-- The app stops working if you enter an invalid command, such as too high integers.
+- The app stopped working when you entered an invalid command, such as strings or integers outside the 0-4 range.
+I managed to fix this by creating a while loop that prevents the app from crashing when entering a command that is out
+of bounds.
+- There was also an issue with the computer guesses where the computer would guess on the same spaces on the board several times.
+This would lead to the game sometimes taking forever and giving the computer a minimal chance of winning the game. I managed to fix this with a while-loop in the function. So in other words, we managed to make the computer smarter.
+See screenshots below:
+
+![error1](./images/error1.png)
+
+![error2](./images/error2.png)
+
+![smartcomputer](./images/smartcomputer.png)
+
+
 
 Overall, the code is running with no problems according to PEP8
 
 ### Remaining bugs
-- There is an issue where the app breaks if you enter an integer outside the range of 0-4
 
 - No errors are returned when validated through pep8.
 

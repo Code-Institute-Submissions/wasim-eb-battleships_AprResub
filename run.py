@@ -10,10 +10,10 @@ of 5x5 dots which are empty spaces on the board and the same applies
 for the computerboard.
 """
 
-playerBoard = [[".", ".", ".", ".", "."], 
-               [".", ".", ".", ".", "."], 
-               [".", ".", ".", ".", "."], 
-               [".", ".", ".", ".", "."], 
+playerBoard = [[".", ".", ".", ".", "."],
+               [".", ".", ".", ".", "."],
+               [".", ".", ".", ".", "."],
+               [".", ".", ".", ".", "."],
                [".", ".", ".", ".", "."]]
 
 computerBoard = [[".", ".", ".", ".", "."], 
@@ -172,4 +172,4 @@ runGame()
 #   O = Empty space has been hit
 
 # Datorn ska ej kunna gissa på samma
-# 
+#

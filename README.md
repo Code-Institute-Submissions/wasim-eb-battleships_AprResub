@@ -41,9 +41,6 @@ The winner is the player who sinks all of the opponents ships.
 ### Future features
 - Have ships larger than 1x1
 - Add a restart message where the player can decide to play again
-- Make the computer smarter. The computer shouldn’t make the same guess more than once. 
-- The player should not be able to enter the same guess twice
-- You should not be able to make guesses outside the size of the board.
 
 
 ## Data model

@@ -53,7 +53,7 @@ I have manually tested this application, and I also asked a friend to try it out
 I managed to fix this by creating a while loop that prevents the app from crashing when entering a command that is out
 of bounds.
 - There was also an issue with the computer guesses where the computer would guess on the same spaces on the board several times.
-This would lead to the game sometimes taking forever and giving the computer a minimal chance of winning the game. I managed to fix this with a while-loop in the function. So in other words, we managed to make the computer smarter.
+This would lead to the game sometimes taking forever and giving the computer a minimal chance of winning the game. I managed to fix this with a while-loop in the function. So in other words, I managed to make the computer smarter.
 See screenshots below:
 
 ![error1](./images/error1.png)

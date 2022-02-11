@@ -16,10 +16,10 @@ playerBoard = [[".", ".", ".", ".", "."],
                [".", ".", ".", ".", "."],
                [".", ".", ".", ".", "."]]
 
-computerBoard = [[".", ".", ".", ".", "."], 
-                 [".", ".", ".", ".", "."], 
-                 [".", ".", ".", ".", "."], 
-                 [".", ".", ".", ".", "."], 
+computerBoard = [[".", ".", ".", ".", "."],
+                 [".", ".", ".", ".", "."],
+                 [".", ".", ".", ".", "."],
+                 [".", ".", ".", ".", "."],
                  [".", ".", ".", ".", "."]]
 
 """
@@ -27,11 +27,13 @@ Here, the player places their ships on the board. Type an integer between 0-4
 (0 being the first row and column, and 4 being the fifth) to decide which
 row and which column to place the ship.
 """
+
+
 def placePlayerShips():
     for x in range(4):
         row = assertIntegerWithinBounds("Please, enter a number between 0-4:")
-        column = assertIntegerWithinBounds("Please, enter a number between 0-4:")
-        
+        column = assertIntegerWithinBounds /
+        ("Please, enter a number between 0-4:")
         if playerBoard[row][column] == ".":
             playerBoard[row][column] = "@"
             print("Your ship has been placed")
@@ -40,42 +42,48 @@ def placePlayerShips():
             print("Error, a ship has already been placed there")
         # Lägg till value error?
 
+
 def assertIntegerWithinBounds(message):
 
     while True:
-	    userInput = input(message)
-	    if userInput.isnumeric():
-		    userInput = int(userInput)
-		    if userInput >= 0 and userInput <= 4:
-			    return userInput
-		    else:
-			    print("Enter a value between 0 - 4")
-	    else :
-		    print("Please, enter a numeric value")
-    
+        userInput = input(message)
+    if userInput.isnumeric():
+	    userInput = int(userInput)
+
+    if userInput >= 0 and userInput <= 4:
+        return userInput
+    else:
+        print("Enter a value between 0 - 4")
+        else:
+            print("Please, enter a numeric value")
 
 """
 The computer places 4 ships on the computerboard by picking 4 random spaces
 to place their ships on. The integer is randomized between 0-4 (1-5)
 """
+
+
 def placeComputerShips():
     for x in range(4):
         row = randint(0, 4)
         column = randint(0, 4)
-        
+
         if computerBoard[row][column] == ".":
             computerBoard[row][column] = "@"
         else:
             x = x-1
-            
+
 """
-The player makes the first guess by typing in two 
+The player makes the first guess by typing in two
 integers to decide which space to attack. If it hits,
 the dot turns into a "X", and if it misses, it turns into a "O"
 """
+
+
 def playerGuess():
     guessRow = assertIntegerWithinBounds("Please, enter a number between 0-4:")
-    guessColumn = assertIntegerWithinBounds("Please, enter a number between 0-4:")
+    guessColumn = assertIntegerWithinBounds /
+    ("Please, enter a number between 0-4:")
 
     if computerBoard[guessRow][guessColumn] == "@":
         computerBoard[guessRow][guessColumn] = "X"
@@ -87,12 +95,14 @@ def playerGuess():
 # Lösa alla utfall av gissningar.
 # Om jag träffar ett skepp (@), byts punkten ut mot ett (X),
 # alltså träffat skepp.
+
+
 def runGame():
     while not gameOver():
         playerGuess()
         computerGuess()
         printBoards()
-        
+
 
 def computerGuess():
     while True:
@@ -106,6 +116,7 @@ def computerGuess():
         elif playerBoard[randRow][randCol] == ".":
             playerBoard[randRow][randCol] = "O"
             break
+
 
 def gameOver():
     player_sunkenShipCount = 0
@@ -128,12 +139,12 @@ def gameOver():
     print("COMPUTER SUNKEN SHIP COUNT: ", computer_sunkenShipCount)
 
     return False
-   
+
 
 def printBoards():
     # Printing user board
     print(username, "'s board")
-    
+
     for x in range(5):
         for y in range(5):
             print(playerBoard[x][y], end=" ")
@@ -154,7 +165,6 @@ def printBoards():
 
         # If there is a ship place on this dot,
         # it shall not be printed.
-        
         # Instead of a ship(@) on the computerboard
         # there but be a dot(.) to hide the location for the player.
 
@@ -172,4 +182,3 @@ runGame()
 #   O = Empty space has been hit
 
 # Datorn ska ej kunna gissa på samma
-#

@@ -74,11 +74,17 @@ Overall, the code is running with no problems according to PEP8
 
 This project was deployed using Code Institute's mock terminal for Heroku.
 
-#### Steps for deployment
-- Create a new Heroku app
+### Steps for deployment
+- Fork or clone this repository
+- Created a new Heroku app
 - Set the buildpacks to Python and NodeJS, in that order.
 - Link the Heroku app to the repository
-- Click on Deploy.
+#### Inside the app settings:
+- Add a config var of PORT:8000
+- Set the buildpacks to Python and NodeJS in that order
+
+- Link the Heroku app to the forked repository
+- Manually Deploy
 
 ## Credits
 - Code institute for the deployment terminal

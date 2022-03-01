@@ -86,6 +86,15 @@ This project was deployed using Code Institute's mock terminal for Heroku.
 - Link the Heroku app to the forked repository
 - Manually Deploy
 
+## Technologies used: 
+### Frameworks, Libraries & Programs:
+1. Github
+2. Git
+
+### Languages: 
+- Python
+
+
 ## Credits
 - Code institute for the deployment terminal
 - Wikipedia for the details of the Battleships game

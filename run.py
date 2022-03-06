@@ -1,6 +1,6 @@
 from random import randint
 
-print("Welcome to Battleshipz")
+print("Welcome to Battleshipz v2")
 
 username = input("Enter Username:")
 
@@ -32,8 +32,7 @@ def placePlayerShips():
     """
     for x in range(4):
         row = assertIntegerWithinBounds("Please, enter a number between 0-4:")
-        column = assertIntegerWithinBounds
-        ("Please, enter a number between 0-4:")
+        column = assertIntegerWithinBounds("Please, enter a number between 0-4:")
         if playerBoard[row][column] == ".":
             playerBoard[row][column] = "@"
             print("Your ship has been placed")
@@ -81,9 +80,8 @@ def playerGuess():
     integers to decide which space to attack. If it hits,
     the dot turns into a "X", and if it misses, it turns into a "O"
     """
-    guessRow = assertIntegerWithinBounds("Please, enter a number between 0-4:")
-    guessColumn = assertIntegerWithinBounds
-    ("Please, enter a number between 0-4:")
+    guessRow = assertIntegerWithinBounds("Enter a number between 0-4:")
+    guessColumn = assertIntegerWithinBounds("Enter a number between 0-4:")
 
     if computerBoard[guessRow][guessColumn] == "@":
         computerBoard[guessRow][guessColumn] = "X"

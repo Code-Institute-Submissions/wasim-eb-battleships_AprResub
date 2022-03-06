@@ -39,6 +39,7 @@ def placePlayerShips():
 
         else:
             print("Error, a ship has already been placed there")
+            x = x-1
 
 
 def assertIntegerWithinBounds(message):

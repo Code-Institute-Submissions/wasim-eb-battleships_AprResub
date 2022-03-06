@@ -30,16 +30,16 @@ def placePlayerShips():
     (0 being the first row and column, and 4 being the fifth)
     to decide which row and which column to place the ship.
     """
-    for x in range(4):
-        row = assertIntegerWithinBounds("Please, enter a number between 0-4:")
-        column = assertIntegerWithinBounds("Please, enter a number between 0-4:")
+    x = 0
+    while x < 4:
+        row = assertIntegerWithinBounds("Enter a number between 0-4:")
+        column = assertIntegerWithinBounds("Enter a number between 0-4:")
         if playerBoard[row][column] == ".":
             playerBoard[row][column] = "@"
             print("Your ship has been placed")
-
+            x = x+1
         else:
             print("Error, a ship has already been placed there")
-            x = x-1
 
 
 def assertIntegerWithinBounds(message):

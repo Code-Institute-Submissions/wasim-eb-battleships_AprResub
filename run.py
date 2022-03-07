@@ -44,7 +44,8 @@ def placePlayerShips():
 
 def assertIntegerWithinBounds(message):
     """
-
+    Reads an input, converts it into an integer and
+    asserts that the integer is within bounds.
     """
     while True:
         userInput = input(message)
@@ -185,5 +186,3 @@ runGame()
 #   @ = Placed ship
 #   X = Ship has been hit
 #   O = Empty space has been hit
-
-# Datorn ska ej kunna gissa på samma

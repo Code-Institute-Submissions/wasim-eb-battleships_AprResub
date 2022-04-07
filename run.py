@@ -10,14 +10,14 @@ def place_player_ships(player_board):
     """
     x = 0
     while x < 4:
-        row = assert_integer_within_bounds("Place your ship\
-        by entering a number between 0-4:")
-        column = assert_integer_within_bounds("Place your ship\
-        by entering a number between 0-4:")
+        row = assert_integer_within_bounds(
+            "Place your ship by entering a number between [0, 4]: ")
+        column = assert_integer_within_bounds(
+            "Place your ship by entering a number between [0, 4]: ")
         if player_board[row][column] == ".":
             player_board[row][column] = "@"
             print("Your ship has been placed")
-            x = x+1
+            x = x + 1
         else:
             print("Error, a ship has already been placed there")
 
@@ -31,7 +31,6 @@ def assert_integer_within_bounds(message):
         user_input = input(message)
         if user_input.isnumeric():
             user_input = int(user_input)
-
         else:
             print("Please, enter a numeric value")
             continue
@@ -62,8 +61,8 @@ def player_guess(computer_board):
     integers to decide which space to attack. If it hits,
     the dot turns into a "X", and if it misses, it turns into a "O"
     """
-    guess_row = assert_integer_within_bounds("Enter a number between 0-4:")
-    guess_column = assert_integer_within_bounds("Enter a number between 0-4:")
+    guess_row = assert_integer_within_bounds("Enter a number between [0, 4]: ")
+    guess_column = assert_integer_within_bounds("Enter a number between [0, 4]: ")
 
     if computer_board[guess_row][guess_column] == "@":
         computer_board[guess_row][guess_column] = "X"
@@ -117,14 +116,15 @@ def game_over(computer_board, player_board, username):
             elif computer_board[x][y] == "X":
                 computer_sunken_ship_count = computer_sunken_ship_count + 1
 
+    print("PLAYER SUNKEN SHIP COUNT: ", player_sunken_ship_count)
+    print("COMPUTER SUNKEN SHIP COUNT: ", computer_sunken_ship_count)
+
     if player_sunken_ship_count == 4:
         print("Computer wins")
         return True
     elif computer_sunken_ship_count == 4:
         print(username, " wins!")
         return True
-    print("PLAYER SUNKEN SHIP COUNT: ", player_sunken_ship_count)
-    print("COMPUTER SUNKEN SHIP COUNT: ", computer_sunken_ship_count)
 
     return False
 
@@ -158,7 +158,10 @@ def main():
     """
     print("Welcome to Battleshipz v2")
 
-    username = input("Enter Username:")
+    while True:
+        username = input("Please enter your name (>5 characters): ")
+        if username.strip() != '' and len(username) >= 5:
+            break
 
     """
     Both boards where the game will be played on. The playerboard consists

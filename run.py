@@ -1,29 +1,7 @@
 from random import randint
 
-print("Welcome to Battleshipz v2")
 
-username = input("Enter Username:")
-
-"""
-Both boards where the game will be played on. The playerboard consists
-of 5x5 dots which are empty spaces on the board and the same applies
-for the computerboard.
-"""
-
-playerBoard = [[".", ".", ".", ".", "."],
-               [".", ".", ".", ".", "."],
-               [".", ".", ".", ".", "."],
-               [".", ".", ".", ".", "."],
-               [".", ".", ".", ".", "."]]
-
-computerBoard = [[".", ".", ".", ".", "."],
-                 [".", ".", ".", ".", "."],
-                 [".", ".", ".", ".", "."],
-                 [".", ".", ".", ".", "."],
-                 [".", ".", ".", ".", "."]]
-
-
-def placePlayerShips():
+def place_player_ships(player_board):
     """
     Here, the player places their ships on the board.
     Type an integer between 0-4
@@ -32,36 +10,38 @@ def placePlayerShips():
     """
     x = 0
     while x < 4:
-        row = assertIntegerWithinBounds("Enter a number between 0-4:")
-        column = assertIntegerWithinBounds("Enter a number between 0-4:")
-        if playerBoard[row][column] == ".":
-            playerBoard[row][column] = "@"
+        row = assert_integer_within_bounds("Place your ship\
+        by entering a number between 0-4:")
+        column = assert_integer_within_bounds("Place your ship\
+        by entering a number between 0-4:")
+        if player_board[row][column] == ".":
+            player_board[row][column] = "@"
             print("Your ship has been placed")
             x = x+1
         else:
             print("Error, a ship has already been placed there")
 
 
-def assertIntegerWithinBounds(message):
+def assert_integer_within_bounds(message):
     """
     Reads an input, converts it into an integer and
     asserts that the integer is within bounds.
     """
     while True:
-        userInput = input(message)
-        if userInput.isnumeric():
-            userInput = int(userInput)
+        user_input = input(message)
+        if user_input.isnumeric():
+            user_input = int(user_input)
 
         else:
             print("Please, enter a numeric value")
             continue
-        if userInput >= 0 and userInput <= 4:
-            return userInput
+        if user_input >= 0 and user_input <= 4:
+            return user_input
         else:
             print("Enter a value between 0 - 4")
 
 
-def placeComputerShips():
+def place_computer_ships(computer_board):
     """
     The computer places 4 ships on the computerboard by picking 4 random spaces
     to place their ships on. The integer is randomized between 0-4 (1-5)
@@ -70,86 +50,86 @@ def placeComputerShips():
         row = randint(0, 4)
         column = randint(0, 4)
 
-        if computerBoard[row][column] == ".":
-            computerBoard[row][column] = "@"
+        if computer_board[row][column] == ".":
+            computer_board[row][column] = "@"
         else:
             x = x-1
 
 
-def playerGuess():
+def player_guess(computer_board):
     """
     The player makes the first guess by typing in two
     integers to decide which space to attack. If it hits,
     the dot turns into a "X", and if it misses, it turns into a "O"
     """
-    guessRow = assertIntegerWithinBounds("Enter a number between 0-4:")
-    guessColumn = assertIntegerWithinBounds("Enter a number between 0-4:")
+    guess_row = assert_integer_within_bounds("Enter a number between 0-4:")
+    guess_column = assert_integer_within_bounds("Enter a number between 0-4:")
 
-    if computerBoard[guessRow][guessColumn] == "@":
-        computerBoard[guessRow][guessColumn] = "X"
+    if computer_board[guess_row][guess_column] == "@":
+        computer_board[guess_row][guess_column] = "X"
         print("Congratulations, you hit a ship!")
-    elif computerBoard[guessRow][guessColumn] == ".":
-        computerBoard[guessRow][guessColumn] = "O"
+    elif computer_board[guess_row][guess_column] == ".":
+        computer_board[guess_row][guess_column] = "O"
 
 
-def runGame():
+def run_game(computer_board, player_board, username):
     """
     This function contains the game-loop,
     which controls the order of actions taken
     and when the game terminates
     """
-    while not gameOver():
-        playerGuess()
-        computerGuess()
-        printBoards()
+    while not game_over(computer_board, player_board, username):
+        player_guess(computer_board)
+        computer_guess(player_board)
+        print_boards(computer_board, player_board, username)
 
 
-def computerGuess():
+def computer_guess(player_board):
     """
     This function controls the
     behaviour of the computer
     """
     while True:
-        randRow = randint(0, 4)
-        randCol = randint(0, 4)
+        rand_row = randint(0, 4)
+        rand_col = randint(0, 4)
 
-        if playerBoard[randRow][randCol] == "@":
-            playerBoard[randRow][randCol] = "X"
+        if player_board[rand_row][rand_col] == "@":
+            player_board[rand_row][rand_col] = "X"
             break
 
-        elif playerBoard[randRow][randCol] == ".":
-            playerBoard[randRow][randCol] = "O"
+        elif player_board[rand_row][rand_col] == ".":
+            player_board[rand_row][rand_col] = "O"
             break
 
 
-def gameOver():
+def game_over(computer_board, player_board, username):
     """
     Checks if the game is finished and prints
     out the name of the winner
     """
-    player_sunkenShipCount = 0
-    computer_sunkenShipCount = 0
+    player_sunken_ship_count = 0
+    computer_sunken_ship_count = 0
 
     for x in range(5):
         for y in range(5):
-            if playerBoard[x][y] == "X":
-                player_sunkenShipCount = player_sunkenShipCount + 1
-            elif computerBoard[x][y] == "X":
-                computer_sunkenShipCount = computer_sunkenShipCount + 1
+            if player_board[x][y] == "X":
+                player_sunken_ship_count = player_sunken_ship_count + 1
+            elif computer_board[x][y] == "X":
+                computer_sunken_ship_count = computer_sunken_ship_count + 1
 
-    if player_sunkenShipCount == 4:
+    if player_sunken_ship_count == 4:
         print("Computer wins")
         return True
-    elif computer_sunkenShipCount == 4:
+    elif computer_sunken_ship_count == 4:
         print(username, " wins!")
         return True
-    print("PLAYER SUNKEN SHIP COUNT: ", player_sunkenShipCount)
-    print("COMPUTER SUNKEN SHIP COUNT: ", computer_sunkenShipCount)
+    print("PLAYER SUNKEN SHIP COUNT: ", player_sunken_ship_count)
+    print("COMPUTER SUNKEN SHIP COUNT: ", computer_sunken_ship_count)
 
     return False
 
 
-def printBoards():
+def print_boards(computer_board, player_board, username):
     """
     Prints the player and computer boards which
     also serves as the battlefield
@@ -158,31 +138,50 @@ def printBoards():
 
     for x in range(5):
         for y in range(5):
-            print(playerBoard[x][y], end=" ")
+            print(player_board[x][y], end=" ")
         print("")
-    # --------
 
     print("Computer's board")
 
     for x in range(5):
         for y in range(5):
-            currentPos = computerBoard[x][y]
-            if currentPos == '@':
-                print(".", end=" ")  # 5 is replaced by .
+            current_pos = computer_board[x][y]
+            if current_pos == '@':
+                print(".", end=" ")
             else:
-                print(currentPos, end=" ")
+                print(current_pos, end=" ")
         print("")
 
 
-placePlayerShips()
+def main():
+    """ Main function
+    """
+    print("Welcome to Battleshipz v2")
 
-placeComputerShips()
+    username = input("Enter Username:")
 
-printBoards()
+    """
+    Both boards where the game will be played on. The playerboard consists
+    of 5x5 dots which are empty spaces on the board and the same applies
+    for the computerboard.
+    """
 
-runGame()
+    player_board = [[".", ".", ".", ".", "."],
+                    [".", ".", ".", ".", "."],
+                    [".", ".", ".", ".", "."],
+                    [".", ".", ".", ".", "."],
+                    [".", ".", ".", ".", "."]]
 
-#   . = Empty space
-#   @ = Placed ship
-#   X = Ship has been hit
-#   O = Empty space has been hit
+    computer_board = [[".", ".", ".", ".", "."],
+                      [".", ".", ".", ".", "."],
+                      [".", ".", ".", ".", "."],
+                      [".", ".", ".", ".", "."],
+                      [".", ".", ".", ".", "."]]
+
+    place_player_ships(player_board)
+    place_computer_ships(computer_board)
+    print_boards(computer_board, player_board, username)
+    run_game(computer_board, player_board, username)
+
+
+main()

@@ -41,6 +41,7 @@ The winner is the player who sinks all of the opponents ships.
 ### Future features
 - Have ships larger than 1x1
 - Add a restart message where the player can decide to play again
+- A 2-player mode where two players can compete against eachother
 
 
 ## Data model
@@ -69,6 +70,7 @@ Overall, the code is running with no problems according to PEP8
 ### Remaining bugs
 
 - No errors are returned when validated through pep8.
+![pep8validator](./images/pep8battleships.png)
 
 ## Deployment
 
@@ -79,17 +81,35 @@ This project was deployed using Code Institute's mock terminal for Heroku.
 - Created a new Heroku app
 - Set the buildpacks to Python and NodeJS, in that order.
 - Link the Heroku app to the repository
-#### Inside the app settings:
-- Add a config var of PORT:8000
-- Set the buildpacks to Python and NodeJS in that order
 
-- Link the Heroku app to the forked repository
-- Manually Deploy
+This project was published and deployed using the Code Institute mock terminal for Heroku
+ - Steps for deployment: 
+   - Fork or clone this repository
+   - Create a new Heroku application
+   - Add a config var of PORT:8000
+   - Set the buildpacks to Python and NodeJS in that order
+   - In the "Deploy" menu choose "Deployment method" GitHub
+   - Connect and choose the repository in the "App connected to GitHub" 
+   - Choose either "Automatic deployment" = which means that every push to the branch you specify will deploy a new version of this app, OR:
+   - "Manual deploy" = this will deploy the current state/version of the branch   
 
 ## Technologies used: 
 ### Frameworks, Libraries & Programs:
-1. Github
-2. Git
+
+[Python:](https://en.wikipedia.org/wiki/History_of_Python)
+- The programming language Python was used. 
+
+[Python random library:](https://docs.python.org/3/library/random.html)
+- random.randint was used to generate random integer numbers in the game. 
+
+[GitHub:](https://github.com/)
+- GitHub was used to store the projects code after being pushed from Git.
+
+[Gitpod:](https://www.gitpod.io/)
+- Was used to develop and write my project
+
+[Heroku:](https://www.heroku.com/what)
+- Was used for deployment of the project live in the cloud.
 
 ### Languages: 
 - Python
@@ -100,5 +120,4 @@ This project was deployed using Code Institute's mock terminal for Heroku.
 - Wikipedia for the details of the Battleships game
 - Stackoverflow, for code examples.
 - Youtube for various guides, explaining functions and how they work.
-
-
+- My mentor from Code Institute, Guido Cecilio.

@@ -61,8 +61,10 @@ def player_guess(computer_board):
     integers to decide which space to attack. If it hits,
     the dot turns into a "X", and if it misses, it turns into a "O"
     """
-    guess_row = assert_integer_within_bounds("Enter a number between [0, 4]: ")
-    guess_column = assert_integer_within_bounds("Enter a number between [0, 4]: ")
+    guess_row = assert_integer_within_bounds(
+        "Enter a number between [0, 4]: ")
+    guess_column = assert_integer_within_bounds(
+        "Enter a number between [0, 4]: ")
 
     if computer_board[guess_row][guess_column] == "@":
         computer_board[guess_row][guess_column] = "X"
@@ -163,12 +165,6 @@ def main():
         if username.strip() != '' and len(username) >= 5:
             break
 
-    """
-    Both boards where the game will be played on. The playerboard consists
-    of 5x5 dots which are empty spaces on the board and the same applies
-    for the computerboard.
-    """
-
     player_board = [[".", ".", ".", ".", "."],
                     [".", ".", ".", ".", "."],
                     [".", ".", ".", ".", "."],
@@ -180,6 +176,12 @@ def main():
                       [".", ".", ".", ".", "."],
                       [".", ".", ".", ".", "."],
                       [".", ".", ".", ".", "."]]
+
+    """
+    Both boards where the game will be played on. The playerboard consists
+    of 5x5 dots which are empty spaces on the board and the same applies
+    for the computerboard.
+    """
 
     place_player_ships(player_board)
     place_computer_ships(computer_board)

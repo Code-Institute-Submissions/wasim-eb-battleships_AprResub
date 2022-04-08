@@ -100,7 +100,7 @@ This project was published and deployed using the Code Institute mock terminal f
 - The programming language Python was used. 
 
 [Python random library:](https://docs.python.org/3/library/random.html)
-- random.randint was used to generate random integer numbers in the game. 
+- random.randint was used to generate random integer numbers to place the computer's ships in the game. 
 
 [GitHub:](https://github.com/)
 - GitHub was used to store the projects code after being pushed from Git.
